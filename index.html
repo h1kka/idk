@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style type="text/css">
+        .item {
+            width: 150px;
+            height: 150px;
+            background-size:100%;
+            background-repeat: no-repeat;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            height: 200px;
+            width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: absolute;
+            margin-left: 550px;
+            margin-top: 100px;
+        }
+        .border{
+            border: 5px solid green;          
+        }
+        .btn{
+            font-size: 25px;
+            border-radius: 10px;
+            position: absolute;
+            left: 700px;
+        }
+        .txt{
+            font-family: arial;
+            position: absolute;
+            font-size: 30px;
+            margin-top: 0px;
+            left: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<button class="btn">
+    Начать игру
+</button>
+<p class="txt">Осталось 7</p>
+
+
+<div class="row">
+
+</div>
+
+
+<script type="text/javascript">
+    //див-родитель
+    let txt=document.querySelector(".txt");
+    let row = document.querySelector(".row");
+
+    let randomizer=function(arg){
+        let random=Math.random()*arg;
+        let round=Math.round(random);
+        return round
+    }
+
+    //хранение картинок
+    let images = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png"];
+    let btn=document.querySelector(".btn");
+    let rw=document.querySelector(".row");
+
+
+    let check=0;
+    let check2=0;
+    let check3=0;
+    let check4=0;
+    let check5=0;
+    let check6=0;
+    
+    let t=7;
+    
+
+    for(let i=0; i<12; i+=1){
+        let random=randomizer(images.length-1); //переменная которая хранит рандомное число
+        //первый способ прописать туда i, индекс цикла
+        //второй способ взять количество элементов оставшихся в массиве images.length
+        let box=document.createElement("div");
+        row.appendChild(box);
+        box.classList.add("item");
+        box.name=images[random];
+        box.style.backgroundImage= "url(" + images[random] + ")";
+        images.splice(random,1)
+
+        btn.onclick=function() {
+
+            let time=function(){
+                t=t-1;
+                txt.innerHTML="Осталось "+t;
+            }
+
+            setInterval(time, 1000)
+        }
+
+            box.onclick=function(){
+
+                if(box.name=="1.png"){
+                    box.onclick=null;
+                    box.classList.add("border");
+                    box.classList.add("target1");
+                    box.style.transition= "0.3s";
+                    check=check+1;
+                    if(check==2){
+                    document.querySelectorAll(".target1")[0].style.opacity=0;
+                    document.querySelectorAll(".target1")[1].style.opacity=0;
+                }
+                }
+
+                if(box.name=="2.png"){
+                    box.onclick=null;
+                    box.classList.add("border");
+                    box.classList.add("target2");
+                    box.style.transition= "0.3s";
+                    check2=check2+1;
+                    if(check2==2){
+                    document.querySelectorAll(".target2")[0].style.opacity=0;
+                    document.querySelectorAll(".target2")[1].style.opacity=0;
+                }
+                }
+
+                if(box.name=="3.png"){
+                    box.onclick=null;
+                    box.classList.add("border");
+                    box.classList.add("target3");
+                    box.style.transition= "0.3s";
+                    check3=check3+1;
+                    if(check3==2){
+                    document.querySelectorAll(".target3")[0].style.opacity=0;
+                    document.querySelectorAll(".target3")[1].style.opacity=0;
+                }
+                }
+
+                if(box.name=="4.png"){
+                    box.onclick=null;
+                    box.classList.add("border");
+                    box.classList.add("target4");
+                    box.style.transition= "0.3s";
+                    check4=check4+1;
+                    if(check4==2){
+                    document.querySelectorAll(".target4")[0].style.opacity=0;
+                    document.querySelectorAll(".target4")[1].style.opacity=0;
+                }
+                }
+
+                if(box.name=="5.png"){
+                    box.onclick=null;
+                    box.classList.add("border");
+                    box.classList.add("target5");
+                    box.style.transition= "0.3s";
+                    check5=check5+1;
+                    if(check5==2){
+                    document.querySelectorAll(".target5")[0].style.opacity=0;
+                    document.querySelectorAll(".target5")[1].style.opacity=0;
+                }
+                }
+
+                if(box.name=="6.png"){
+                    box.onclick=null;
+                    box.classList.add("border");
+                    box.classList.add("target6");
+                    box.style.transition= "0.3s";
+                    check6=check6+1;
+                    if(check6==2){
+                    document.querySelectorAll(".target6")[0].style.opacity=0;
+                    document.querySelectorAll(".target6")[1].style.opacity=0;
+                }
+                }
+
+               
+
+                // let boxes=document.querySelectorAll(".box");
+
+                // if(check==2||check2==2||check3==2||check4==2||check5==2||check6==2){
+                //     clearInterval(Interval);
+                //     alert("Победил");
+                // }
+
+                // if(t==0){
+                //     for(i=0; i<boxes.length; i++){
+                //         boxes[i].style.display="none";
+                //     }
+                //     alert("К сожалению ты проиграл");
+                // }
+                
+            }
+        }
+
+
+</script>
+</body>
+</html>
